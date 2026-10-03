@@ -100,6 +100,51 @@ function rotateLiveTicker() {
 }
 setInterval(rotateLiveTicker, 4000);
 
+// ── LIVE INCREMENTING METRICS COUNTERS ──
+const metricsData = {
+  users: 305677,
+  payouts: 104825900,
+  contests: 2485,
+  winners: 128640
+};
+
+function formatNumberWithCommas(num) {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
+function updateMetricValue(id, val, prefix = '') {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.textContent = prefix + formatNumberWithCommas(val);
+  el.classList.remove('incrementing');
+  void el.offsetWidth; // Trigger reflow for CSS animation restart
+  el.classList.add('incrementing');
+}
+
+// Increment Active Users (+1 to +4 users every 2.2 seconds)
+setInterval(() => {
+  metricsData.users += Math.floor(Math.random() * 4) + 1;
+  updateMetricValue('cnt-active-users', metricsData.users);
+}, 2200);
+
+// Increment Total Payouts (+₹2,500 to +₹18,000 every 3.2 seconds)
+setInterval(() => {
+  metricsData.payouts += (Math.floor(Math.random() * 16) + 2.5) * 1000;
+  updateMetricValue('cnt-total-payouts', Math.floor(metricsData.payouts), '₹');
+}, 3200);
+
+// Increment Daily Contests (+1 to +3 contests every 4 seconds)
+setInterval(() => {
+  metricsData.contests += Math.floor(Math.random() * 3) + 1;
+  updateMetricValue('cnt-daily-contests', metricsData.contests);
+}, 4000);
+
+// Increment Lucky Winners (+1 to +5 winners every 2.8 seconds)
+setInterval(() => {
+  metricsData.winners += Math.floor(Math.random() * 5) + 1;
+  updateMetricValue('cnt-lucky-winners', metricsData.winners);
+}, 2800);
+
 // ── INTERSECTION OBSERVER — REVEAL ON SCROLL ──
 const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -60px 0px' };
 const revealObserver = new IntersectionObserver((entries) => {

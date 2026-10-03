@@ -621,6 +621,15 @@ ul { list-style: none; }
   line-height: 1;
   letter-spacing: 0.04em;
   text-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+  transition: transform 0.2s ease;
+}
+@keyframes numGlowPulse {
+  0% { transform: scale(1); text-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
+  50% { transform: scale(1.05); color: #FFF; text-shadow: 0 0 24px rgba(255, 215, 0, 0.9); }
+  100% { transform: scale(1); color: var(--gold); text-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
+}
+.stat-banner-number.incrementing {
+  animation: numGlowPulse 0.4s ease-out;
 }
 .stat-banner-sub {
   font-size: 0.85rem;
