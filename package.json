@@ -1,0 +1,20 @@
+{
+  "name": "jokerbook",
+  "version": "1.0.0",
+  "description": "JOKER BOOK - World's No. 1 Gaming Book",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "build": "echo 'Static site ready'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hritik14322/jokerBook.git"
+  },
+  "keywords": [
+    "gaming",
+    "jokerbook"
+  ],
+  "author": "Joker Book",
+  "license": "ISC"
+}
